@@ -1,5 +1,5 @@
 services:
-  db:
+  write-db:
     image: postgres:15
     environment:
       POSTGRES_USER: username
@@ -7,3 +7,9 @@ services:
       POSTGRES_DB: mydb
     ports:
       - '5432:5432'
+  read-db:
+    image: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGODB_DATABASE="vf-read-db"

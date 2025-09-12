@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { OrmAlarmRepository } from './persistence/orm/repositories/alarm.repositories';
 import { OrmAlarmPersistenceModule } from './persistence/orm/orm-persistence.module';
 import { InMemoryAlarmPersistenceModule } from './persistence/in-memory/in-memory-persistence.module';
 

@@ -1,9 +1,17 @@
+import { AlarmItem } from './alarm-item';
 import { AlarmSeverity } from './value-objects/alarm-severity';
 
 export class Alarm {
-  constructor(
-    public id: string,
-    public name: string,
-    public severity: AlarmSeverity,
-  ) {}
+  public name: string;
+  public severity: AlarmSeverity;
+  public triggeredAt: Date;
+  public isAcknowledged: boolean;
+  public items = new Array<AlarmItem>();
+  constructor(public id: string) {}
+
+  acknowledge() {}
+
+  addAlarmItem(item: AlarmItem) {
+    this.items.push(item);
+  }
 }
