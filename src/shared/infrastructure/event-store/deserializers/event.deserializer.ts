@@ -6,11 +6,10 @@ import { EventClsRegistry } from '../event-cls.registry';
 @Injectable()
 export class EventDeserializer {
   deserialize<T>(event: Event): SerializableEvent<T> {
-    const eventClass = this.getEventClassByType(event.type)!;
-
+    const eventCls = this.getEventClassByType(event.type);
     return {
       ...event,
-      data: this.instantiateSerializedEvent(eventClass, event.data),
+      data: this.instantiateSerializedEvent(eventCls, event.data),
     };
   }
 

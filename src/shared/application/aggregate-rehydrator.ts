@@ -18,7 +18,6 @@ export class AggregateRehydrator {
     const AggregateClsWithDispatcher =
       this.eventPublisher.mergeClassContext(AggregateCls);
     const aggregate = new AggregateClsWithDispatcher(aggregateId);
-    console.log('aggregate', aggregate);
 
     aggregate.loadFromHistory(events);
     return aggregate;

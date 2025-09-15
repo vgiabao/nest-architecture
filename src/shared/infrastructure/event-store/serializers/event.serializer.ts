@@ -39,6 +39,6 @@ export class EventSerializer {
     return Object.entries(data).reduce((acc, [key, value]) => {
       acc[key] = this.toJSON(value);
       return acc;
-    });
+    }, {});
   }
 }

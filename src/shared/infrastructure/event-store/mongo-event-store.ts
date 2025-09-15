@@ -48,8 +48,8 @@ export class MongoEventStore implements EventStore {
     const events = await this.eventStore
       .find({ streamId })
       .sort({ position: 1 });
-    if (!events.length) {
-      throw new Error(`No events found for streamId: ${streamId}`);
+    if (events.length === 0) {
+      throw new Error(`Aggregate with id ${streamId} does not exist`);
     }
     return events.map((event) =>
       this.eventDeserializer.deserialize(event.toJSON()),

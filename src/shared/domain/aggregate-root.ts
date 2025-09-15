@@ -22,10 +22,10 @@ export class VersionedAggregateRoot extends AggregateRoot {
     const domainEvents = history.map((event) => event.data);
     super.loadFromHistory(domainEvents);
     const lastEvent = history[history.length - 1];
-    this.version = new Version(lastEvent.position);
+    this.setVersion(new Version(lastEvent.position));
   }
 
-  private set version(version: Version) {
+  private setVersion(version: Version) {
     this[VERSION] = version;
   }
 }

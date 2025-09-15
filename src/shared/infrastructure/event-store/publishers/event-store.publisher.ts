@@ -22,8 +22,8 @@ export class EventStorePublisher
     event: T,
     dispatcher: VersionedAggregateRoot,
   ) {
-    const serializedEvent = this.eventSerializer.serialize(event, dispatcher);
-    return this.eventStore.persist(serializedEvent);
+    const serializableEvent = this.eventSerializer.serialize(event, dispatcher);
+    return this.eventStore.persist(serializableEvent);
   }
 
   publishAll<T extends IEvent = IEvent>(

@@ -9,14 +9,14 @@ export class AcknowledgeAlarmCommandHandler
   implements ICommandHandler<AcknowledgeAlarmCommand>
 {
   private readonly logger = new Logger(AcknowledgeAlarmCommandHandler.name);
-  constructor(private readonly aggregateRehydrator: AggregateRehydrator) {}
+  constructor(private readonly aggregareRehydrator: AggregateRehydrator) {}
 
   async execute(command: AcknowledgeAlarmCommand) {
     this.logger.debug(
-      `Acknowledging alarm command: ${JSON.stringify(command)}`,
+      `Processing "AcknowledgeAlarmCommand": ${JSON.stringify(command)}`,
     );
 
-    const alarm = await this.aggregateRehydrator.rehydrate(
+    const alarm = await this.aggregareRehydrator.rehydrate(
       command.alarmId,
       Alarm,
     );

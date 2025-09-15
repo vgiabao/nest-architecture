@@ -16,17 +16,16 @@ export class AlarmFactory {
   ) {
     const alarmId = randomUUID();
     const alarmSeverity = new AlarmSeverity(severity as AlarmSeverity['value']);
-    const newAlarm = new Alarm(alarmId);
-    newAlarm.name = name;
-    newAlarm.severity = alarmSeverity;
-    newAlarm.triggeredAt = triggeredAt;
-    newAlarm.isAcknowledged = false;
-
+    const alarm = new Alarm(alarmId);
+    alarm.name = name;
+    alarm.isAcknowledged = false;
+    alarm.severity = alarmSeverity;
+    alarm.triggeredAt = triggeredAt;
     items
       .map((item) => new AlarmItem(randomUUID(), item.name, item.type))
-      .forEach((item) => newAlarm.addAlarmItem(item));
+      .forEach((item) => alarm.addAlarmItem(item));
 
-    newAlarm.apply(new AlarmCreatedEvent(newAlarm), { skipHandler: true });
-    return newAlarm;
+    alarm.apply(new AlarmCreatedEvent(alarm), { skipHandler: true }); // 👈
+    return alarm;
   }
 }
